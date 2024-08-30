@@ -1,0 +1,16 @@
+.container{
+    height:100vh;
+    max-width: 100%;
+    background-image: url("H:\PeerLink\peerlink-frontend\src\assets\pexels-pixabay-531880.jpg");
+    display: flex;
+    justify-content: right ;
+    padding-right: 30px;
+    align-items: center;
+}
+.column{
+    background-color: white;
+    width: 600px;
+    height: 600px;
+    padding-left: 50px;
+    padding-right:50px;
+}

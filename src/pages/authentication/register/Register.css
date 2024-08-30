@@ -77,3 +77,11 @@
     width:70px;
     height: 40px;
 }
+
+.form{
+    height: 100%;
+    
+}
+.error{
+    color: red;
+}

@@ -3,7 +3,7 @@ import CssRegister from './Register.module.css'
 import { useForm } from 'react-hook-form'
 import { object, ref, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
 const schema = object({
   FirstName: string().required(),
@@ -27,8 +27,9 @@ function Register() {
   const formSubmit = (data) => {
     console.log(data)
   }
-
+  const nav = useNavigate();
   return (
+   
     <form className={CssRegister.form} onSubmit={handleSubmit(formSubmit)}>
     <div className={CssRegister.column1}>
       <div className={CssRegister.heading}>
@@ -45,7 +46,7 @@ function Register() {
         <span className={CssRegister.error }>{errors.FirstName?.message}</span>
         
       <div className={CssRegister.inputForm}>
-        <h3>Last Name</h3>
+        <h3 >Last Name</h3>
         <input className={CssRegister.field} type='text' placeholder='Enter Last Name Here' {...register("LastName")} />
       </div>      
 
@@ -88,7 +89,7 @@ function Register() {
       <button className={CssRegister.button} type='submit'>Register</button>
 
       <div className={CssRegister.accountText}>
-        <p>Do you already have account?</p><button className={CssRegister.b1} type='button'>Login</button>
+        <p>Do you already have account?</p><button onClick={()=>nav('/login')} className={CssRegister.b1} type='button'>Login</button>
       </div>
       
       <button className={CssRegister.forget} type='button'>Forgot Password?</button>

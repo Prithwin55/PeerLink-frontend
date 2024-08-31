@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Csslogin from './Login.module.css'
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { object, string } from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const schema =object({
+  Email: string().required().email(),
+  Password: string().required().min(6),
+  Remember:string()
+});
+
 function Login() {
+  const nav = useNavigate();
+  const { handleSubmit, register, formState: { errors } } = useForm(
+    {
+      resolver: yupResolver(schema)
+      
+    }
+  );
+
+  const [isVisible,setIsVisible] = useState(false);
+
+  const submitForm = (data) => {
+    
+    console.log(data); 
+  };
   return (
     <>
-      <form className={Csslogin.form}>
+      <form className={Csslogin.form} onSubmit={handleSubmit(submitForm)}>
       <div className={Csslogin.heading}>
       <svg className={Csslogin.king} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M1 6.417c0-1.013.822-1.833 1.834-1.833 1.215 0 2.104 1.167 1.763 2.329-.559 1.915 5.827 3.731 6.771-1.471.239-1.323-.021-1.67-.668-2.321-.329-.329-.534-.783-.534-1.287 0-1.013.822-1.834 1.834-1.834 1.014 0 1.833.821 1.833 1.833 0 .504-.204.958-.533 1.287-.646.65-.905.998-.666 2.321.941 5.2 7.33 3.387 6.77 1.471-.339-1.162.548-2.329 1.764-2.329 1.012 0 1.832.821 1.832 1.834 0 1.118-.992 1.97-2.084 1.816-1.32-.187-3.03 4.554-3.417 6.716-1.765-.615-3.618-.942-5.493-.949-1.875.006-3.74.334-5.504.949-.388-2.162-2.098-6.903-3.418-6.717-1.092.155-2.084-.697-2.084-1.815zm-1 14.583h2.359l.566 3c.613-1.012 1.388-1.912 2.277-2.68l-2.342-3.335c-1.089.879-2.053 1.848-2.86 3.015zm24 0h-2.359l-.566 3c-.613-1.012-1.388-1.912-2.277-2.68l2.343-3.335c1.088.879 2.052 1.848 2.859 3.015zm-12-4.998c-2.845.009-5.491.825-7.757 2.211l2.334 3.322c1.603-.924 3.448-1.464 5.423-1.473 1.975.009 3.82.549 5.423 1.473l2.334-3.322c-2.266-1.386-4.912-2.202-7.757-2.211zm-3.022 3.498l-.65-.348-.651.348.131-.726-.531-.511.729-.101.321-.662.322.663.729.101-.53.511.13.725zm3.672-.5l-.65-.348-.65.348.131-.726-.531-.511.729-.101.321-.662.322.663.729.101-.53.511.129.725zm3.718.5l-.65-.348-.65.348.131-.726-.531-.511.729-.101.322-.663.322.663.729.101-.53.511.128.726z"/></svg>
         <h1 className={Csslogin.head}>PeerLink</h1>
@@ -23,8 +48,9 @@ function Login() {
             <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z" />
           </g>
         </svg>
-          <input type="text" className={Csslogin.input } placeholder="Enter your Email" />
-      </div>
+          <input type="text" className={Csslogin.input } placeholder="Enter your Email"  {...register("Email")} />
+        </div>
+        <span style={{color:"red"}}>{ errors.Email?.message}</span>
       <div className={Csslogin.flexcolumn}>
         <label>Password </label>
       </div>
@@ -39,28 +65,27 @@ function Login() {
           <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0" />
         </svg>
         <input
-          type="password"
-          className={Csslogin.input}
-          placeholder="Enter your Password"
+            type={!isVisible?"password":"text"}
+          className={clsx(Csslogin.input,Csslogin.customPadd)}
+            placeholder="Enter your Password"
+            {...register("Password")}
         />
-        <svg
-          viewBox="0 0 576 512"
-          height="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
-        </svg>
-      </div>
+          <svg className={Csslogin.eye}style={{viewBox:"0 0 576 512",xmlns:"http://www.w3.org/2000/svg"}} onClick={() => setIsVisible(!isVisible)} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">{isVisible ?<path d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z" />
+              :  <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z" />}
+            </svg>
+          
+        </div>
+        <span style={{color:"red"}}>{ errors.Password?.message}</span>
       <div className={Csslogin.flexrow}>
         <div>
-          <input type="checkbox" />
-          <label>Remember me </label>
+          <input type="checkbox" {...register("Remember")} value={true}/>
+          <label style={{marginLeft:"5px"}}>Remember me </label>
         </div>
         <span className={Csslogin.span}>Forgot password?</span>
       </div>
       <button className={Csslogin.buttonsubmit}>Sign In</button>
       <p className={Csslogin.p}>
-        Don't have an account? <span className={Csslogin.span}>Sign Up</span>
+        Don't have an account? <span className={Csslogin.span} onClick={()=>nav('/register')}>Sign Up</span>
       </p>
         <p className={clsx(Csslogin.line,Csslogin.p)}>Or With</p>
       <div className={Csslogin.flexrow}>

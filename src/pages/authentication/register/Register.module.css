@@ -11,7 +11,7 @@
     width: 100%;
     border-radius: 9px;
     padding: 5px;
-    border:2px solid rgb(0, 0, 0);
+    border:2px solid rgb(171, 171, 171);
 }
 
 .heading{
@@ -39,9 +39,10 @@
 }
 
 .button{
-    background-color: black;
+    background-color: rgb(1, 1, 1);
     color: white;
     height: 50px;
+    border-radius: 20px;
 }
 
 .accountText{
@@ -57,6 +58,8 @@
 .forget{
     background-color: gainsboro;
     height: 50px;
+    border-radius: 20px;
+    margin-bottom: 5px;
 }
 
 .pass{

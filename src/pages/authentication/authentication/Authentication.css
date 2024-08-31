@@ -1,16 +1,25 @@
 .container{
     height:100vh;
     max-width: 100%;
-    background-image: url("H:\PeerLink\peerlink-frontend\src\assets\pexels-pixabay-531880.jpg");
     display: flex;
-    justify-content: right ;
-    padding-right: 30px;
+    justify-content: center ;
+    border-radius: 30px;
     align-items: center;
 }
 .column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: white;
     width: 600px;
     height: 600px;
     padding-left: 50px;
     padding-right:50px;
+}
+
+#particle canvas{
+    z-index: -1;
+    height: -1;
+    width: 100%;
+    position: absolute;
 }

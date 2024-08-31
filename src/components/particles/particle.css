@@ -1,0 +1,27 @@
+
+.part {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  .particle_div {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 730px) {
+    .svg_logo {
+      max-width: 90%;
+      margin-left: 5%;
+    }
+    .particle_div {
+      position: absolute;
+      top: 50px;
+      left: 20px;
+      width: 90%;
+      height: 50vh;
+    }
+  }
+  

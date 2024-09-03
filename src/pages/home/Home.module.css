@@ -1,0 +1,12 @@
+.main{
+    display: flex;
+    justify-content: space-evenly;
+    height: 100vh;
+    background-color: rgb(207, 196, 196);
+}
+
+
+
+.sidebar{
+   margin-left: 10px;
+}

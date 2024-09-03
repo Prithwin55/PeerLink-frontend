@@ -1,0 +1,28 @@
+.middleMain{
+    background-color: rgb(255, 255, 255);
+    width: 500px;
+    height: 100vh; 
+    margin-left: 144px;
+}
+.rightMain{
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+    height: 100vh; 
+}  
+.storyMain{
+    display: flex;
+    overflow-x: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    justify-content: space-between;
+    
+}
+.addStory{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90px;
+    margin-left: 5px;
+    margin-top: 5px;
+}

@@ -4,28 +4,39 @@ import { useForm } from 'react-hook-form'
 import { object, ref, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUserAction } from '../../../redux/auth/auth.action';
+import { LOGIN_REQUEST } from '../../../redux/auth/auth.actionType';
 
 const schema = object({
-  FirstName: string().required(),
-  LastName: string().required(),
-  Email: string().required().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Email is not valid"),
-  Password: string().required().min(6),
-  ConfirmPassword: string().oneOf([ref("Password")], "Password must match"),
+  firstName: string().required(),
+  lastName: string().required(),
+  email: string().required().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Email is not valid"),
+  password: string().required().min(6),
+  ConfirmPassword: string().oneOf([ref("password")], "Password must match"),
   gender:string().required("Select any one gender")
 })
 
 function Register() {
 
+  const dispatch = useDispatch();
+
   const [isVisiblePass, setIsVisiblePass] = useState(false);
   const [isVisibleCPass, setIsVisibleCPass] = useState(false);
+
+  const { error } = useSelector((state) => state.auth);
 
   const { handleSubmit, register ,formState:{errors}} = useForm({
     resolver:yupResolver(schema)
   });
 
   // console.log(errors)
-  const formSubmit = (data) => {
+  const formSubmit =(data) =>{
+  
     console.log(data)
+    dispatch(registerUserAction(data,nav))
+  
+ 
   }
   const nav = useNavigate();
   return (
@@ -39,36 +50,36 @@ function Register() {
 
       <div className={CssRegister.inputForm}>
         <h3>First Name</h3>
-          <input className={CssRegister.field} type='text' placeholder='Enter First Name Here'{...register("FirstName")} />
+          <input className={CssRegister.field} type='text' placeholder='Enter First Name Here'{...register("firstName")} />
           
         </div>
         
-        <span className={CssRegister.error }>{errors.FirstName?.message}</span>
+        <span className={CssRegister.error }>{errors.firstName?.message}</span>
         
       <div className={CssRegister.inputForm}>
         <h3 >Last Name</h3>
-        <input className={CssRegister.field} type='text' placeholder='Enter Last Name Here' {...register("LastName")} />
+        <input className={CssRegister.field} type='text' placeholder='Enter Last Name Here' {...register("lastName")} />
       </div>      
 
-        <span className={CssRegister.error }>{errors.LastName?.message}</span>
+        <span className={CssRegister.error }>{errors.lastName?.message}</span>
         
       <div className={CssRegister.inputForm}>
         <h3>Email</h3>
-        <input className={CssRegister.field} type='text' placeholder='Enter Email Here' {...register("Email")}/>
+        <input className={CssRegister.field} type='text' placeholder='Enter Email Here' {...register("email")}/>
       </div>
-        <span className={CssRegister.error}>{errors.Email?.message}</span>
+        <span className={CssRegister.error}>{errors.email?.message}</span>
         
       <div className={CssRegister.inputForm}>
         <h3>Password</h3>
         <div className={CssRegister.pass}>
-            <input className={CssRegister.field} type={isVisiblePass?'text':'password'}  placeholder='Enter Password Here' {...register("Password")}/>
+            <input className={CssRegister.field} type={isVisiblePass?'text':'password'}  placeholder='Enter Password Here' {...register("password")}/>
             <svg onClick={() => setIsVisiblePass(!isVisiblePass)} className={CssRegister.eye} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">{isVisiblePass ?<path d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z" />
               :  <path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z" />}
             </svg>
         </div>
        
         </div>
-        <span className={CssRegister.error}>{errors.Password?.message}</span>
+        <span className={CssRegister.error}>{errors.password?.message}</span>
         
         <div className={CssRegister.inputForm}>
         <h3>Confirm Password</h3>
@@ -82,14 +93,14 @@ function Register() {
         </div>
         <span className={CssRegister.error}>{errors.ConfirmPassword?.message}</span>
       <div className={CssRegister.gender}>
-          <input className={CssRegister.m} type='radio' value="M" {...register("gender")} /><label>Male</label>
-        <input className={CssRegister.f} type='radio' value="F" {...register("gender")}/><label>Female</label>
+          <input className={CssRegister.m} type='radio' value="M" {...register("gender")} /><label style={{marginLeft:"5px"}}>Male</label>
+        <input className={CssRegister.f} type='radio' value="F" {...register("gender")}/><label style={{marginLeft:"5px"}}>Female</label>
       </div>
       <span className={CssRegister.error}>{errors.gender?.message}</span>
       <button className={CssRegister.button} type='submit'>Register</button>
-
+      <span className={CssRegister.error}>{error===null?"":error.response.data.message}</span>
       <div className={CssRegister.accountText}>
-        <p>Do you already have account?</p><button onClick={()=>nav('/login')} className={CssRegister.b1} type='button'>Login</button>
+          <p>Do you already have account?</p><button onClick={() => { nav('/login'); dispatch({type:LOGIN_REQUEST})}} className={CssRegister.b1} type='button'>Login</button>
       </div>
       
       <button className={CssRegister.forget} type='button'>Forgot Password?</button>

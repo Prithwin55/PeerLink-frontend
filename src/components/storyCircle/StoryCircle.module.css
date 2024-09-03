@@ -1,0 +1,9 @@
+.addStory{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90px;
+    margin-left: 5px;
+    margin-top: 5px;
+}

@@ -9,7 +9,7 @@ import CreatePost from '../createPost/CreatePost';
 
 function Post() {
 
-    const story = [1, 2, 3, 4,5,6];
+    const story = [1, 2, 3, 4,5,6,5];
 
     return (
       <>
@@ -27,7 +27,9 @@ function Post() {
                     story.map(() =>  <StoryCircle/>)    
                   }
             </div>
-            <CreatePost/>
+                <CreatePost />
+                
+
         </div>
         <div className={Csspost.rightMain}>
                 

@@ -1,8 +1,11 @@
 .middleMain{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);;
     width: 500px;
     height: 100vh; 
     margin-left: 144px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
 }
 .rightMain{
     background-color: rgb(255, 255, 255);
@@ -16,6 +19,8 @@
     scrollbar-width: none; 
     justify-content: space-between;
     
+    
+    
 }
 .addStory{
     display:flex;
@@ -23,6 +28,6 @@
     justify-content: center;
     align-items: center;
     max-width: 90px;
-    margin-left: 5px;
+    margin-left: 4px;
     margin-top: 5px;
 }

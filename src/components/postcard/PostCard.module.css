@@ -1,0 +1,10 @@
+.likeRow{
+    display: flex;
+    justify-content: space-between;
+}
+.comment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

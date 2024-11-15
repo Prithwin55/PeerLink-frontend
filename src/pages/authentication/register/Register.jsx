@@ -17,7 +17,7 @@ const schema = object({
   gender:string().required("Select any one gender")
 })
 
-function Register() {
+function Register(props) {
 
   const dispatch = useDispatch();
 
@@ -100,7 +100,11 @@ function Register() {
       <button className={CssRegister.button} type='submit'>Register</button>
       <span className={CssRegister.error}>{error===null?"":error.response.data.message}</span>
       <div className={CssRegister.accountText}>
-          <p>Do you already have account?</p><button onClick={() => { nav('/login'); dispatch({type:LOGIN_REQUEST})}} className={CssRegister.b1} type='button'>Login</button>
+          <p>Do you already have account?</p><button onClick={() => {
+            //nav('/login');
+            props.reg(false);
+            dispatch({ type: LOGIN_REQUEST })
+          }} className={CssRegister.b1} type='button'>Login</button>
       </div>
       
       <button className={CssRegister.forget} type='button'>Forgot Password?</button>

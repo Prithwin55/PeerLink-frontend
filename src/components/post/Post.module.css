@@ -10,7 +10,10 @@
 .rightMain{
     background-color: rgb(255, 255, 255);
     width: 400px;
-    height: 100vh; 
+    height: 500px;
+    padding: 10px;
+   display: flex;
+   flex-direction: column;
 }  
 .storyMain{
     display: flex;
@@ -30,4 +33,29 @@
     max-width: 90px;
     margin-left: 4px;
     margin-top: 5px;
+}
+
+.postCardMain{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+   
+}
+
+.items{
+    
+    overflow-y: scroll; 
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    height: 100vh;
+}
+.textItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.text{
+    font-size: 15px;
+    font-weight:500;
 }

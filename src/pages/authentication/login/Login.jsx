@@ -15,7 +15,7 @@ const schema =object({
   Remember:string()
 });
 
-function Login() {
+function Login(props) {
   const nav = useNavigate();
   const { handleSubmit, register, formState: { errors } } = useForm(
     {
@@ -96,7 +96,11 @@ function Login() {
         <button className={Csslogin.buttonsubmit}>Sign In</button>
         <span style={{color:"red"}}>{ error===null?"":error.response.data.message}</span>
       <p className={Csslogin.p}>
-          Don't have an account? <span className={Csslogin.span} onClick={() => { nav('/register'); dispatch({type:REGISTER_REQUEST})}}>Sign Up</span>
+          Don't have an account? <span className={Csslogin.span} onClick={() => {
+            //nav('/register');
+            props.reg(true);
+            dispatch({ type: REGISTER_REQUEST })
+          }}>Sign Up</span>
       </p>
         <p className={clsx(Csslogin.line,Csslogin.p)}>Or With</p>
       <div className={Csslogin.flexrow}>

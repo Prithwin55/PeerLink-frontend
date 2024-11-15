@@ -11,6 +11,7 @@
     align-items: center;
     gap: 25px;
      cursor: pointer;
+    
 }
 
 .input{
@@ -18,12 +19,14 @@
     border-radius: 10px;
     height: 30px;
     border: 1px solid rgb(80, 80, 86);
+    display:flex;
+    width: 80%;
 }
 .topitem{
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    width: 100%;
 }
 
 .bottomitem{
@@ -37,16 +40,19 @@
 .media{
     display: flex;
     gap: 4px;
+    width: 100%;
 }
 
 .video{
     display: flex;
     gap: 4px;
+    width: 100%;
 }
 
 .article{
     display: flex;
     gap: 4px;
+    width: 100%;
 }
 
 .input:focus {

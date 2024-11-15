@@ -18,7 +18,7 @@ const nav=useNavigate()
         {
         title: "Home",
         icon: <CottageOutlinedIcon />,
-        click:()=>nav("/")
+        click:()=>nav("posts")
         },
         {
             title: "Reels",
@@ -53,7 +53,7 @@ const nav=useNavigate()
         {
             title: "Profile",
             icon: <Person4OutlinedIcon />,
-            click:()=>nav("/")
+            click:()=>nav("profile")
         },
         
     ]

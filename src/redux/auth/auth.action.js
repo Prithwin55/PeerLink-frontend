@@ -1,6 +1,6 @@
 import axios from "axios"
-import { API_AUTH_BASE_URL, API_BASE_URL } from "../../config/Api"
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./auth.actionType";
+import { api, API_AUTH_BASE_URL, API_BASE_URL } from "../../config/Api"
+import { GET_PROFILE_FAILURE, GET_PROFILE_REQUEST, GET_PROFILE_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, UPDATE_PROFILE_REQUEST } from "./auth.actionType";
 import { createBrowserHistory } from "history";
 
 
@@ -16,7 +16,7 @@ export const loginUserAction = (loginData,nav) => async (dispatch) => {
         if (data.token) {
             localStorage.setItem("jwt", data.token);
             console.log(data.token);
-            nav("/home/post")
+            nav("/home/posts")
         }
        
         console.log("loggedIn",data.token)
@@ -42,7 +42,7 @@ export const registerUserAction = (registerData,nav) => async(dispatch) => {
             console.log(data.token);
             console.log(data.message)
             console.log(data.token);
-            nav("/home/post")
+            nav("/home/posts")
         }
         console.log("registered",data)
         dispatch({type:LOGIN_SUCCESS,payload:data.token})
@@ -51,5 +51,44 @@ export const registerUserAction = (registerData,nav) => async(dispatch) => {
         console.log(error.response.data.message);
         
         dispatch({type:LOGIN_FAILURE,payload:error})
+    }
+}
+
+export const getProfileAction = (jwt) => async(dispatch) => {
+    
+    dispatch({type:GET_PROFILE_REQUEST})
+    try {
+        console.log("inside "+jwt)
+        const { data } = await axios.get(`${API_BASE_URL}/api/peerlink/user/profile`, {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            },
+            
+        });
+        
+        console.log("Profile data",data)
+        dispatch({type:GET_PROFILE_SUCCESS,payload:data})
+
+    } catch (error) {
+        console.log(error);
+        
+        dispatch({type:GET_PROFILE_FAILURE,payload:error})
+    }
+}
+
+export const updateProfileAction = (reqData) => async(dispatch) => {
+    
+    dispatch({type:UPDATE_PROFILE_REQUEST})
+    try {
+        
+        const { data } = await api.get(`${API_BASE_URL}api/peerlink/user/update`, reqData);
+        
+        console.log("Update Profile data",data)
+        dispatch({type:UPDATE_PROFILE_REQUEST,payload:data})
+
+    } catch (error) {
+       // console.log(error.response.data.message); 
+        
+        dispatch({type:UPDATE_PROFILE_REQUEST,payload:error})
     }
 }

@@ -2,12 +2,15 @@
     display: flex;
     justify-content: space-evenly;
     height: 100vh;
-    /* background-color: #77DD77 */
-    background-image: linear-gradient(90deg, rgba(82,72,153,1) 0%, rgba(163,159,188,1) 12%, rgba(144,135,206,1) 20%, rgba(167,167,197,1) 33%, rgba(119,111,169,1) 40%, rgba(129,144,161,1) 48%, rgba(195,192,215,1) 61%, rgba(106,93,194,1) 78%, rgba(188,186,206,1) 90%);
+     background-color: #d5dad5 ;
+     /* background-image: linear-gradient(90deg, rgba(82,72,153,1) 0%, rgba(163,159,188,1) 12%, rgba(144,135,206,1) 20%, rgba(167,167,197,1) 33%, rgba(119,111,169,1) 40%, rgba(129,144,161,1) 48%, rgba(195,192,215,1) 61%, rgba(106,93,194,1) 78%, rgba(188,186,206,1) 90%); */
 }
 
 
 
-.sidebar{
-   margin-left: 10px;
-}
+
+.content{
+    margin-left: 60px; /* Match the initial width of the sidebar */
+    width: calc(100% - 400px); /* Full width minus the sidebar */
+    transition: margin-left 0.3s ease-in-out;
+  }

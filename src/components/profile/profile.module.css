@@ -14,6 +14,13 @@
     z-index: 100;
    
 }
+.avtarEdit{
+    position:absolute;
+    top: 45%;
+    right: 68%;
+    z-index: 100;
+   
+}
 .button{
     display: flex;
     justify-content:end;
@@ -49,3 +56,37 @@
     width: 395px;
     
 }
+.editDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.boxEdit{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    gap: 10px;
+}
+.input {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 95%;
+    height: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .scrollDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    height: 30vh;
+  }
+  .mainScroll{
+    position: relative;
+    overflow-y: scroll;
+    max-height: 80vh;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+  }

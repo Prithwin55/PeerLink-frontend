@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CssSidebar from './Sidebar.module.css'
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 import { useNavigate } from 'react-router-dom';
@@ -12,8 +12,19 @@ import Diversity1Icon from '@mui/icons-material/Diversity1';
 import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 import testImage from '../../assets/pexels-pixabay-531880.jpg'
 import { Css } from '@mui/icons-material';
+import { getProfileAction } from '../../redux/auth/auth.action';
+import { useDispatch, useSelector } from 'react-redux';
 function SideBar() {
-const nav=useNavigate()
+    const nav = useNavigate()
+    const dispatch = useDispatch()
+    
+    const { loading, payload, error } = useSelector((state) => state.auth);
+    
+    useEffect(() => {
+        const jwt = localStorage.getItem("jwt");
+        dispatch(getProfileAction(jwt))
+    },[])
+
     const menu = [
         {
         title: "Home",
@@ -79,10 +90,10 @@ const nav=useNavigate()
                     <img className={CssSidebar.image } src={testImage} alt="imgno"></img>
                 </div>
                 <div className={CssSidebar.nameDiv}>
-                        <h1 className={CssSidebar.name}>Prithwin Ratnan A</h1>
+                    <h1 className={CssSidebar.name}>{payload?.firstName+" "+payload?.lastName }</h1> {/*name*/}
                 </div>
             </div>
-            </div>
+        </div>
     )
 }
 

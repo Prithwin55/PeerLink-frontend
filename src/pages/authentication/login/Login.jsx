@@ -99,7 +99,7 @@ function Login(props) {
           Don't have an account? <span className={Csslogin.span} onClick={() => {
             //nav('/register');
             props.reg(true);
-            dispatch({ type: REGISTER_REQUEST })
+            // dispatch({ type: REGISTER_REQUEST })
           }}>Sign Up</span>
       </p>
         <p className={clsx(Csslogin.line,Csslogin.p)}>Or With</p>

@@ -20,13 +20,13 @@ function App() {
 
   const dispatch = useDispatch()
   
-  useEffect(() => {
-    console.log(jwt);
+  // useEffect(() => {
+  //   console.log(jwt);
     
-    dispatch(getProfileAction(jwt))
+  //   dispatch(getProfileAction(jwt))
 
 
-  },[jwt])
+  // },[jwt])
   return (
     <div className="App">
       <Routes>

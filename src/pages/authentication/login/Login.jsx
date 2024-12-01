@@ -94,7 +94,7 @@ function Login(props) {
         <span className={Csslogin.span}>Forgot password?</span>
       </div>
         <button className={Csslogin.buttonsubmit}>Sign In</button>
-        <span style={{color:"red"}}>{ error===null?"":error.response.data.message}</span>
+        <span style={{color:"red"}}>{ error===null?"":error.response?.data?.message}</span>
       <p className={Csslogin.p}>
           Don't have an account? <span className={Csslogin.span} onClick={() => {
             //nav('/register');

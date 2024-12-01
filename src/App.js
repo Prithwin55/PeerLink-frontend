@@ -25,8 +25,6 @@ function App() {
     
     dispatch(getProfileAction(jwt))
 
-    console.log("this"+payload);
-    
 
   },[jwt])
   return (
@@ -35,10 +33,10 @@ function App() {
         <Route path='/' element={!jwt ? <Authentication /> : <Home />}>
           
         </Route>
-          
+        {/* <Route path='auth' element={<Authentication/>}></Route>  */}
         
         <Route path='/home' element={jwt ? <Home /> : <Authentication /> } >
-          <Route path='posts' element={jwt?<Post data={payload} />:<Authentication/>} />
+          <Route path='posts' element={jwt?<Post />:<Authentication/>} />
           <Route path='profile' element={jwt?<Profile />:<Authentication/>}/>
         </Route>
       </Routes>

@@ -3,6 +3,7 @@ import axios from "axios";
 export const API_BASE_URL = 'http://localhost:8080';
 
 export const API_AUTH_BASE_URL = '/auth/peerlink/user';
+export const API_POST_BASE_URL='/api/peerlink/post'
 
 const jwtToken = localStorage.getItem("jwt");
 

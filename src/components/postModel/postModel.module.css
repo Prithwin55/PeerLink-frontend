@@ -1,0 +1,52 @@
+
+.media{
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    width: 100%;
+}
+
+.video{
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.article{
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    width: 100%;
+}
+.createMain{
+    border: 2px solid silver;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    height: 120px;
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25px;
+     cursor: pointer;
+    
+}
+
+.input{
+    width: 400px;
+    border-radius: 10px;
+    height: 30px;
+    border: 1px solid rgb(80, 80, 86);
+    display:flex;
+    
+    width: 80%;
+}
+.topitem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

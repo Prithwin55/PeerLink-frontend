@@ -7,6 +7,7 @@ import CreatePost from '../createPost/CreatePost';
 import PostCard from '../postcard/PostCard';
 import { SearchOffOutlined } from '@mui/icons-material';
 import PopularUserTemplate from '../popularUserTemplate/PopularUserTemplate'
+import PostModal from '../postModel/postModel';
 
 
 
@@ -41,7 +42,7 @@ function Post(props) {
                   
           </div>
                 
-
+            <PostModal/>
         </div>
         <div className={Csspost.rightMain}>
           <TextField id="filled-basic" label="Search user" variant="outlined" sx={{ width: "100%", borderRadius: "20px", marginTop: "10px" }} />
